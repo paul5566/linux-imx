@@ -117,7 +117,6 @@ static int rx8025_check_validity(struct device *dev)
 		dev_warn(dev, "power voltage drop detected\n");
 
 	if (ctrl2 & RX8025_BIT_CTRL2_PON) {
-		dev_warn(dev, "power-on reset detected, date is invalid\n");
 		return -EINVAL;
 	}
 
