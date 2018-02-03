@@ -108,6 +108,16 @@
 		};
 	};
 
+	gpio0-edm {
+		compatible = "gpio-edm";
+		usb_otg2 {
+			label = "USB_OTG2";
+			gpios = <&gpio5 8 0>;
+			dir   = "out";
+		};
+	};
+
+
 	sound: sound {
 		compatible = "fsl,imx6ul-evk-wm8960",
 			   "fsl,imx-audio-wm8960";
