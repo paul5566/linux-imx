@@ -115,8 +115,27 @@
 			gpios = <&gpio5 8 0>;
 			dir   = "out";
 		};
+		gpio_out1 {
+			label = "GPIO_OUT1";
+			gpios = <&gpio1 2 0>;
+			dir   = "out";
+		};
+		gpio_out2 {
+			label = "GPIO_OUT2";
+			gpios = <&gpio1 4 0>;
+			dir   = "out";
+		};
+		gpio_in1 {
+			label = "GPIO_IN1";
+			gpios = <&gpio1 1 0>;
+			dir   = "in";
+		};
+		gpio_in2 {
+			label = "GPIO_IN2";
+			gpios = <&gpio1 3 0>;
+			dir   = "in";
+		};
 	};
-
 
 	sound: sound {
 		compatible = "fsl,imx6ul-evk-wm8960",
