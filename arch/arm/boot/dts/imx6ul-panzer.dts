@@ -115,6 +115,11 @@
 			gpios = <&gpio5 8 0>;
 			dir   = "out";
 		};
+		gpio_led2 {
+			label = "GPIO_LED2";
+			gpios = <&gpio5 9 0>;
+			dir   = "out";
+		};
 		gpio_out1 {
 			label = "GPIO_OUT1";
 			gpios = <&gpio1 2 0>;
