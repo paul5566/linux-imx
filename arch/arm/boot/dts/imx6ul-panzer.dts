@@ -143,7 +143,7 @@
 	};
 
 	sound: sound {
-		compatible = "fsl,imx6ul-evk-wm8960",
+		compatible = "fsl,imx6ul-panzer-wm8960",
 			   "fsl,imx-audio-wm8960";
 		model = "wm8960-audio";
 		cpu-dai = <&sai2>;
