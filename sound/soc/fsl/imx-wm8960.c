@@ -351,24 +351,8 @@ static int imx_wm8960_late_probe(struct snd_soc_card *card)
 	struct snd_soc_codec *codec = codec_dai->codec;
 	struct imx_wm8960_data *data = snd_soc_card_get_drvdata(card);
 
-	/*
-	 * codec ADCLRC pin configured as GPIO, DACLRC pin is used as a frame
-	 * clock for ADCs and DACs
-	 */
-	snd_soc_update_bits(codec, WM8960_IFACE2, 1<<6, 1<<6);
-
-	/* GPIO1 used as headphone detect output */
-	snd_soc_update_bits(codec, WM8960_ADDCTL4, 7<<4, 3<<4);
-
-	if (data->hp_det[0] > 3) {
-		snd_soc_dapm_enable_pin(&card->dapm, "Ext Spk");
-		return 0;
-	}
-	/* Enable headphone jack detect */
-	snd_soc_update_bits(codec, WM8960_ADDCTL2, 1<<6, 1<<6);
-	snd_soc_update_bits(codec, WM8960_ADDCTL2, 1<<5, data->hp_det[1]<<5);
-	snd_soc_update_bits(codec, WM8960_ADDCTL4, 3<<2, data->hp_det[0]<<2);
-	snd_soc_update_bits(codec, WM8960_ADDCTL1, 3, 3);
+	snd_soc_dapm_disable_pin(&card->dapm, "Ext Spk");
+	snd_soc_dapm_disable_pin(&card->dapm, "Main MIC");
 
 	return 0;
 }
@@ -622,6 +606,10 @@ static int imx_wm8960_probe(struct platform_device *pdev)
 
 	platform_set_drvdata(pdev, &data->card);
 	snd_soc_card_set_drvdata(&data->card, data);
+
+	imx_hp_jack_gpio.gpio = of_get_named_gpio_flags(pdev->dev.of_node,
+			"hp-det-gpios", 0, &priv->hp_active_low);
+
 	ret = devm_snd_soc_register_card(&pdev->dev, &data->card);
 	if (ret) {
 		dev_err(&pdev->dev, "snd_soc_register_card failed (%d)\n", ret);
@@ -629,9 +617,6 @@ static int imx_wm8960_probe(struct platform_device *pdev)
 	}
 
 	priv->snd_card = data->card.snd_card;
-
-	imx_hp_jack_gpio.gpio = of_get_named_gpio_flags(pdev->dev.of_node,
-			"hp-det-gpios", 0, &priv->hp_active_low);
 
 	imx_mic_jack_gpio.gpio = of_get_named_gpio_flags(pdev->dev.of_node,
 			"mic-det-gpios", 0, &priv->mic_active_low);
