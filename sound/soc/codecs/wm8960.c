@@ -1443,17 +1443,6 @@ static int wm8960_i2c_probe(struct i2c_client *i2c,
 	regmap_update_bits(wm8960->regmap, WM8960_LOUT2, 0x100, 0x100);
 	regmap_update_bits(wm8960->regmap, WM8960_ROUT2, 0x100, 0x100);
 
-	regmap_update_bits(wm8960->regmap, WM8960_POWER1, 0xc0, 0xc0);
-	regmap_update_bits(wm8960->regmap, WM8960_POWER2, 0x199, 0x199);
-	regmap_update_bits(wm8960->regmap, WM8960_CLASSD1, 0xf7, 0xf7);
-	regmap_update_bits(wm8960->regmap, WM8960_CLASSD3, 0x11b, 0x11b);
-	regmap_update_bits(wm8960->regmap, WM8960_LOUT2, 0x179, 0x179);
-	regmap_update_bits(wm8960->regmap, WM8960_ROUT2, 0x179, 0x179);
-	regmap_update_bits(wm8960->regmap, WM8960_LOUTMIX, 0x100, 0x100);
-	regmap_update_bits(wm8960->regmap, WM8960_ROUTMIX, 0x100, 0x100);
-	regmap_update_bits(wm8960->regmap, WM8960_POWER3, 0x0c, 0x0c);
-	regmap_update_bits(wm8960->regmap, WM8960_DACCTL1, 0x00, 0x00);
-
 	i2c_set_clientdata(i2c, wm8960);
 
 	ret = snd_soc_register_codec(&i2c->dev,
