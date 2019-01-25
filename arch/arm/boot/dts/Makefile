@@ -549,6 +549,7 @@ dtb-$(CONFIG_SOC_IMX6UL) += \
 	imx6ul-isiot-nand.dtb \
 	imx6ul-liteboard.dtb \
 	imx6ul-opos6uldev.dtb \
+	imx6ul-panzer.dtb \
 	imx6ul-pico-hobbit.dtb \
 	imx6ul-tx6ul-0010.dtb \
 	imx6ul-tx6ul-0011.dtb \
