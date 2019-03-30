@@ -35,14 +35,6 @@
 		};
 	};
 
-	backlight_display: backlight-display {
-		compatible = "pwm-backlight";
-		pwms = <&pwm1 0 5000000>;
-		brightness-levels = <0 4 8 16 32 64 128 255>;
-		default-brightness-level = <6>;
-		status = "okay";
-	};
-
 	pxp_v4l2 {
 		compatible = "fsl,imx6ul-pxp-v4l2", "fsl,imx6sx-pxp-v4l2", "fsl,imx6sl-pxp-v4l2";
 		status = "okay";
@@ -341,12 +333,6 @@
 	};
 };
 
-&pwm1 {
-	pinctrl-names = "default";
-	pinctrl-0 = <&pinctrl_pwm1>;
-	status = "okay";
-};
-
 &pxp {
 	status = "okay";
 };
@@ -592,12 +578,6 @@
 	pinctrl_pf1550: pf1550 {
 		fsl,pins = <
 			 MX6UL_PAD_SNVS_TAMPER4__GPIO5_IO04      0x80000000
-		>;
-	};
-
-	pinctrl_pwm1: pwm1grp {
-		fsl,pins = <
-			MX6UL_PAD_GPIO1_IO08__PWM1_OUT   0x110b0
 		>;
 	};
 
