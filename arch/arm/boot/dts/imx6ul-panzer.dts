@@ -19,7 +19,7 @@
 	};
 
 	memory {
-		reg = <0x80000000 0x20000000>;
+		reg = <0x80000000 0x10000000>;
 	};
 
 	reserved-memory {
@@ -163,36 +163,13 @@
 		clock-names = "mclk";
 	};
 
-	ov5640: ov5640@3c {
-		compatible = "ovti,ov5640";
-		reg = <0x3c>;
-		pinctrl-names = "default";
-		pinctrl-0 = <&pinctrl_csi1>;
-		clocks = <&clks IMX6UL_CLK_CSI>;
-		clock-names = "csi_mclk";
-		pwn-gpios = <&gpio_spi 6 1>;
-		rst-gpios = <&gpio_spi 5 0>;
-		csi_id = <0>;
-		mclk = <24000000>;
-		mclk_source = <0>;
-		status = "disabled";
-		port {
-			ov5640_ep: endpoint {
-				remote-endpoint = <&csi1_ep>;
-			};
-		};
+	rx8025@32 {
+		compatible = "rx8025";
+		reg = <0x32>;
+		status = "okay";
 	};
 };
 
-&csi {
-	status = "disabled";
-
-	port {
-		csi1_ep: endpoint {
-			remote-endpoint = <&ov5640_ep>;
-		};
-	};
-};
 
 &fec1 {
 	pinctrl-names = "default";
@@ -494,8 +471,8 @@
 
 	pinctrl_i2c2: i2c2grp {
 		fsl,pins = <
-			MX6UL_PAD_UART5_TX_DATA__I2C2_SCL 0x4001b8b0
-			MX6UL_PAD_UART5_RX_DATA__I2C2_SDA 0x4001b8b0
+			MX6UL_PAD_CSI_HSYNC__I2C2_SCL	0x4001b8b0
+			MX6UL_PAD_CSI_VSYNC__I2C2_SDA	0x4001b8b0
 		>;
 	};
 
